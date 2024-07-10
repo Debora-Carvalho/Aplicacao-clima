@@ -4,11 +4,13 @@ document.querySelector('#search').addEventListener('submit', async (event) => {
     const cityName = document.querySelector('#city_name').value;
 
     if (!cityName) {
-        return showAlert('Você precisa digitar o nome de uma cidade...')
+        document.querySelector("#weather").classList.remove('show');
+        showAlert('Você precisa digitar uma cidade...');
+        return;
     }
 
     const apiKey = '8106e874e06c95ee70ddad91ec5e9470';
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURI(cityName)}&appid=${apiKey}&units=metric&lang=pt_br`;
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURI(cityName)}&appid=${apiKey}&units=metric&lang=pt_br`
 
     const results = await fetch(apiUrl);
     const json = await results.json();
